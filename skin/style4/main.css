@@ -1,0 +1,72 @@
+.wall { background-image: url(./bg.jpg); background-size: cover;}
+
+.pure-button:hover, .pure-button:focus {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#1a000000', GradientType=0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(40%, rgba(0, 0, 0, .05)), to(rgba(0, 0, 0, .1)));
+  background-image: -webkit-linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+  background-image: -moz-linear-gradient(top, rgba(0, 0, 0, .05) 0, rgba(0, 0, 0, .1));
+  background-image: -o-linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, .05) 40%, rgba(0, 0, 0, .1));
+}
+
+.title-panel{
+  background: url(./title-bg.png) repeat-x center;
+  background-size: contain;
+}
+.title-panel:before{
+  background: url(./title-left.png) no-repeat top;
+  background-size: contain;
+}
+.title-panel:after{
+  background: url(./title-right.png) no-repeat top;
+  background-size: contain;
+}
+
+
+.tools .pure-button {
+  background-color: #2D3ABF;
+  box-shadow: 0 .04rem 0 0 #1522A5;
+}
+
+.tools .btn-start {color: #fff; box-shadow: 0 .04rem 0 0 #4533A0;background-color: #7766CC;}
+.tools .select-btn {color: #fff; box-shadow: 0 .04rem 0 0 #4533A0;background-color: #7766CC;}
+.tools .stop-btn {background-color: #f57b65;}
+
+
+.result-panel a {
+  color: #FFCFC0;
+}
+
+/* 展示面板 */
+.detail-panel {
+  color: #4533A0;
+  box-shadow: 0 0 3.5rem inset, 0 0 .05rem rgba(202, 225, 100, .5);
+  border-left: .01rem solid rgba(202, 225, 100, .5);
+  border-right: .01rem solid rgba(202, 225, 100, 0.5);
+}
+.detail-panel::after {
+  /* top: -.02rem; */
+  bottom: -.02rem;
+  right: 0;
+  background: -webkit-linear-gradient(left, rgba(225, 177, 100, 0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, 1) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
+  background: linear-gradient(left, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, 1) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
+}
+.detail-panel::before {
+  top: -.02rem;
+  /* bottom: -.02rem; */
+  background: -webkit-linear-gradient(right, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, .8) 75%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
+  background: linear-gradient(right, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, .8) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
+}
+.detail-panel .close {
+  color: rgba(255,255,255,.6);
+}
+.detail-panel .panel-content p{
+  color: #fdfdfe;
+  text-shadow: 0 0 .05rem #fefa07;
+}
+
+/* 获奖结果页 */
+
+/* .result-title {
+  color: #fae074;
+} */

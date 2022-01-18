@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="screen-orientation" content="portrait">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
+  <title>活动设置</title>
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <!-- <link id="linkStyle" rel="stylesheet" type="text/css" href="skin/style1/main.css"> -->
+  <script type="text/javascript">
+    let styleValue = localStorage.getItem('act_style') || 1
+    let linkEl = document.createElement('link')
+    linkEl.href = `skin/${styleValue}/main.css`
+    linkEl.id = 'linkStyle'
+    linkEl.rel = 'stylesheet'
+    linkEl.type = 'text/css';
+    document.head.appendChild(linkEl);
+  </script>
+</head>
+<body>
+<div id="main" class="wall">
+  <div style="width: 11rem;margin: 0 auto;">
+    <div class="title-panel">活动设置</div>
+    <div class="pond-panel">
+      <textarea id="txtPond" onpaste="onPaste"></textarea>
+      <div class="tools pond-btns">
+        <label>活动标题：</label><input id="txtTitle" type="text" class="input-txt" value="" placeholder="抽奖活动标题" onchange="onTitleChange(this.value)" />
+        <label>活动样式：</label><select id="selStyle" class="sel-style" onchange="onStyleChange(this.value)">
+          <option value="style1">样式1</option>
+          <option value="style2">样式2</option>
+          <option value="style3">样式3</option>
+          <option value="style4">样式4</option>
+          <option value="style5">样式5</option>
+        </select>
+        <label>人数设置：</label><input id="txtNum" type="text" class="input-txt" value="" placeholder="数字以,分隔，如：1,3,5" onchange="onNumChange(this.value)" />
+        <a href="javascript:void(0)" class="pure-button" onclick="onClear()">清空奖池</a><br/>
+        <a href="javascript:void(0)" class="pure-button" onclick="onSave()">保存奖池</a>
+        
+        <div class="desc-panel">
+          <h1>说明：</h1>
+          <p>Excel 中直接复制ERP、姓名两列粘贴</p>
+          <p>或</p>
+          <p>手动录入，如:</p>
+          <p>ERP,姓名</p>
+          <p>ERP,姓名</p>
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+
+</div>
+<script type="text/javascript" src="js/zepto.js"></script>
+<script type="text/javascript" src="js/adaptive.js"></script>
+<script type="text/javascript">
+  let $txtTitle = document.getElementById('txtTitle')
+  $txtTitle.value = localStorage.getItem('act_title') || ''
+
+  let $txtNum = document.getElementById('txtNum')
+  $txtNum.value = JSON.parse(localStorage.getItem('act_nums') || '[]').join(',')
+
+  let textArea = document.getElementById('txtPond')
+  textArea.placeholder = 'Excel 中直接复制ERP、姓名两列粘贴 \n 或 \n 手动录入，如:\n ERP,姓名 \nERP,姓名 \n '
+  textArea.addEventListener('paste', onPaste)
+  
+  onLoad()
+  function onLoad(){
+    let styleValue = localStorage.getItem('act_style') || 1
+    document.getElementById('selStyle').value = styleValue
+
+    let pondList = JSON.parse(localStorage.getItem('act_pondList'))
+    if(pondList && pondList.length){
+      textArea.value = pondList.map(item => item.erp +','+ item.name).join('\n')
+    }
+  }
+  
+  function onPaste(event){
+    event.preventDefault()
+    var text = (event.clipboardData || window.clipboardData).getData('text');
+    text = text.replace(/[\t,，]+/g, ',')
+    textArea.value += text
+  }
+
+  function onClear(event){
+    textArea.value = ''
+    localStorage.removeItem('act_pondList')
+  }
+
+  function onSave(){
+    let listStr = textArea.value.split('\n')
+    let pondList = listStr.map(item => {
+      let itemArr = item.split(',')
+      return {
+        erp: itemArr[0].trim(),
+        name: itemArr[1].trim()
+      }
+    }) 
+    localStorage.setItem('act_pondList', JSON.stringify(pondList))
+  }
+
+  function onTitleChange(title){
+    if(!title){
+      localStorage.removeItem('act_title')
+      return
+    }
+    localStorage.setItem('act_title', title)
+  }
+
+  function onNumChange(nums){
+    if(!nums){
+      localStorage.removeItem('act_nums')
+      return
+    }
+    let numList = nums.split(',')
+    localStorage.setItem('act_nums', JSON.stringify(numList))
+  }
+  function onStyleChange(style){
+    let $linkStyle = document.getElementById('linkStyle')
+    $linkStyle.href = `skin/${style}/main.css`
+    localStorage.setItem('act_style', style)
+  }
+</script>
+</body>
+</html>
