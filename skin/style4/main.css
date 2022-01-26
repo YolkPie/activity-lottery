@@ -29,12 +29,12 @@
 }
 
 .tools .btn-start {color: #fff; box-shadow: 0 .04rem 0 0 #4533A0;background-color: #7766CC;}
-.tools .select-btn {color: #fff; box-shadow: 0 .04rem 0 0 #4533A0;background-color: #7766CC;}
-.tools .stop-btn {background-color: #f57b65;}
+.tools .select-btn {color: #fff; box-shadow: 0 .04rem 0 0 #2D3ABF;background-color: #707BF6;}
+/* .tools .stop-btn {background-color: #f57b65;} */
 
 
 .result-panel a {
-  color: #FFCFC0;
+  color: #7766CC;
 }
 
 /* 展示面板 */
@@ -45,7 +45,6 @@
   border-right: .01rem solid rgba(202, 225, 100, 0.5);
 }
 .detail-panel::after {
-  /* top: -.02rem; */
   bottom: -.02rem;
   right: 0;
   background: -webkit-linear-gradient(left, rgba(225, 177, 100, 0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, 1) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
@@ -53,7 +52,6 @@
 }
 .detail-panel::before {
   top: -.02rem;
-  /* bottom: -.02rem; */
   background: -webkit-linear-gradient(right, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, .8) 75%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
   background: linear-gradient(right, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, .8) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
 }

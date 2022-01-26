@@ -9,13 +9,15 @@
   <link rel="stylesheet" type="text/css" href="css/main.css">
   <!-- <link id="linkStyle" rel="stylesheet" type="text/css" href="skin/style1/main.css"> -->
   <script type="text/javascript">
-    let styleValue = localStorage.getItem('act_style') || 1
-    let linkEl = document.createElement('link')
-    linkEl.href = `skin/${styleValue}/main.css`
-    linkEl.id = 'linkStyle'
-    linkEl.rel = 'stylesheet'
-    linkEl.type = 'text/css';
-    document.head.appendChild(linkEl);
+    let styleValue = localStorage.getItem('act_style')
+    if(styleValue){
+      let linkEl = document.createElement('link')
+      linkEl.href = `skin/${styleValue}/main.css`
+      linkEl.id = 'linkStyle'
+      linkEl.rel = 'stylesheet'
+      linkEl.type = 'text/css';
+      document.head.appendChild(linkEl);
+    }
   </script>
 </head>
 <body>
@@ -27,11 +29,13 @@
   <div class="result-panel">
     <a href="./result.html" target="_blank">获奖名单</a>
     <a href="./setting.html" style="margin-left: .2rem;" target="_blank">设置</a>
-</div>
-  <div id="result" class="detail-panel">
-    <span class="close" @click="closeResultPannel">X</span>
-    <div id="pannelContent" class="panel-content">
-      <!--<p>展示中奖人员名单</p>-->
+  </div>
+  <div id="result" class="mask">
+    <div class="detail-panel">
+      <span class="close" @click="closeResultPannel">X</span>
+      <div id="pannelContent" class="panel-content">
+        <!--<p>展示中奖人员名单</p>-->
+      </div>
     </div>
   </div>
   <div id="tools" class="tools">
@@ -44,13 +48,31 @@
     >
     </button>
     <button
+      id="btnStart"
       class="pure-button btn-start"
       @click="toggle"
       :class="{'stop-btn': running}"
       v-text="running ? '停!' : '开始'"
     >
     </button>
-    <button class="pure-button btn-reset" @click="reset">重置</button>
+    <button class="pure-button btn-reset" onclick="showDialog('dgResetConfirm')">重置</button>
+  </div>
+
+  <div id="dgResetConfirm" class="mask">
+    <div class="dialog">
+      <div class="title">
+        确认重置
+        <span class="close" onclick="hideDialog('dgResetConfirm')">X</span>
+      </div>
+      
+      <div class="center">
+        确定要重置么？所有之前的抽奖历史将被清除！
+      </div>
+      <div class="footer">
+        <span class="pure-button btn-canel" onclick="hideDialog('dgResetConfirm')">取消</span>
+        <span class="pure-button btn-confirm" onclick="onResetConfirm()">确定</span>
+      </div>
+    </div>
   </div>
 </div>
 <script type="text/javascript" src="js/zepto.js"></script>

@@ -29,8 +29,8 @@
 }
 
 .tools .btn-start {color: #fff; box-shadow: 0 .04rem 0 0 #980C4E;background-color: #CC4C89;}
-.tools .select-btn {color: #AE0102; box-shadow: 0 .04rem 0 0 #FF8D6A;background-color: #FFCFC0;}
-.tools .stop-btn {background-color: #f57b65;}
+.tools .select-btn {color: #fff; box-shadow: 0 .04rem 0 0 #0F4B86;background-color: #4995DF;}
+/* .tools .stop-btn {background-color: #f57b65;} */
 
 
 .result-panel a {
@@ -38,14 +38,13 @@
 }
 
 /* 展示面板 */
-.detail-panel {
+/* .detail-panel {
   color: #f15a4c;
   box-shadow: 0 0 3.5rem inset, 0 0 .05rem rgba(202, 225, 100, .5);
   border-left: .01rem solid rgba(202, 225, 100, .5);
   border-right: .01rem solid rgba(202, 225, 100, 0.5);
 }
 .detail-panel::after {
-  /* top: -.02rem; */
   bottom: -.02rem;
   right: 0;
   background: -webkit-linear-gradient(left, rgba(225, 177, 100, 0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, 1) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
@@ -53,7 +52,6 @@
 }
 .detail-panel::before {
   top: -.02rem;
-  /* bottom: -.02rem; */
   background: -webkit-linear-gradient(right, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, .8) 75%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
   background: linear-gradient(right, rgba(225, 177, 100,0) 0%, rgba(225, 177, 100, .7) 55%,rgba(204, 255, 255, .8) 70%,rgba(119, 187, 242, 1) 80%, rgba(170, 245, 255,0) 100%);
 }
@@ -63,7 +61,7 @@
 .detail-panel .panel-content p{
   color: #fdfdfe;
   text-shadow: 0 0 .05rem #fefa07;
-}
+} */
 
 /* 获奖结果页 */
 

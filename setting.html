@@ -5,18 +5,16 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-  <title>活动设置</title>
+  <title>抽奖设置</title>
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  <!-- <link id="linkStyle" rel="stylesheet" type="text/css" href="skin/style1/main.css"> -->
+  <link id="linkStyle" rel="stylesheet" type="text/css" href="skin/style1/main.css">
   <script type="text/javascript">
-    let styleValue = localStorage.getItem('act_style') || 1
-    let linkEl = document.createElement('link')
-    linkEl.href = `skin/${styleValue}/main.css`
-    linkEl.id = 'linkStyle'
-    linkEl.rel = 'stylesheet'
-    linkEl.type = 'text/css';
-    document.head.appendChild(linkEl);
+    let styleValue = localStorage.getItem('act_style')
+    if(styleValue){
+      let linkEl = document.getElementById('linkStyle')
+      linkEl.href = `skin/${styleValue}/main.css`
+    }
   </script>
 </head>
 <body>
@@ -27,13 +25,14 @@
       <textarea id="txtPond" onpaste="onPaste"></textarea>
       <div class="tools pond-btns">
         <label>活动标题：</label><input id="txtTitle" type="text" class="input-txt" value="" placeholder="抽奖活动标题" onchange="onTitleChange(this.value)" />
-        <label>活动样式：</label><select id="selStyle" class="sel-style" onchange="onStyleChange(this.value)">
-          <option value="style1">样式1</option>
-          <option value="style2">样式2</option>
-          <option value="style3">样式3</option>
-          <option value="style4">样式4</option>
-          <option value="style5">样式5</option>
-        </select>
+        <label>活动样式：</label>
+          <select id="selStyle" class="sel-style" onchange="onStyleChange(this.value)">
+            <option value="style1">黎明时分</option>
+            <option value="style2">红红火火</option>
+            <option value="style3">深色</option>
+            <option value="style4">蓝紫</option>
+            <option value="style5">黑蓝</option>
+          </select>
         <label>人数设置：</label><input id="txtNum" type="text" class="input-txt" value="" placeholder="数字以,分隔，如：1,3,5" onchange="onNumChange(this.value)" />
         <a href="javascript:void(0)" class="pure-button" onclick="onClear()">清空奖池</a><br/>
         <a href="javascript:void(0)" class="pure-button" onclick="onSave()">保存奖池</a>
@@ -53,7 +52,7 @@
   </div>
 
 </div>
-<script type="text/javascript" src="js/zepto.js"></script>
+<div class="toast"><span></span></div>
 <script type="text/javascript" src="js/adaptive.js"></script>
 <script type="text/javascript">
   let $txtTitle = document.getElementById('txtTitle')
@@ -68,7 +67,7 @@
   
   onLoad()
   function onLoad(){
-    let styleValue = localStorage.getItem('act_style') || 1
+    let styleValue = localStorage.getItem('act_style') || 'style1'
     document.getElementById('selStyle').value = styleValue
 
     let pondList = JSON.parse(localStorage.getItem('act_pondList'))
@@ -87,9 +86,14 @@
   function onClear(event){
     textArea.value = ''
     localStorage.removeItem('act_pondList')
+    localStorage.removeItem('act_choosed')
   }
 
   function onSave(){
+    if(!textArea.value){
+      toast('请录入奖池名单')
+      return
+    }
     let listStr = textArea.value.split('\n')
     let pondList = listStr.map(item => {
       let itemArr = item.split(',')
@@ -99,6 +103,16 @@
       }
     }) 
     localStorage.setItem('act_pondList', JSON.stringify(pondList))
+    toast('保存成功！')
+  }
+
+  function toast(msg){
+    let $toast = document.getElementsByClassName('toast')[0]
+    $toast.getElementsByTagName('span')[0].innerText = msg
+    $toast.style.display = 'block'
+    setTimeout(() => {
+      $toast.style.display = 'none'
+    }, 1000 * 1.5);
   }
 
   function onTitleChange(title){
@@ -114,7 +128,7 @@
       localStorage.removeItem('act_nums')
       return
     }
-    let numList = nums.split(',')
+    let numList = nums.replace(/[,，]+/g, ',').split(',')
     localStorage.setItem('act_nums', JSON.stringify(numList))
   }
   function onStyleChange(style){

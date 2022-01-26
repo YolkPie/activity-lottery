@@ -4,22 +4,23 @@
   <meta name="screen-orientation" content="portrait">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0"/>
-  <title>产品研发部获奖名单</title>
+  <title>获奖名单</title>
   <link rel="stylesheet" type="text/css" href="css/reset.css">
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  <!-- <link id="linkStyle" rel="stylesheet" type="text/css" href="skin/style1/main.css"> -->
   <script type="text/javascript">
-    let styleValue = localStorage.getItem('act_style') || 1
-    let linkEl = document.createElement('link')
-    linkEl.href = `skin/${styleValue}/main.css`
-    linkEl.id = 'linkStyle'
-    linkEl.rel = 'stylesheet'
-    linkEl.type = 'text/css';
-    document.head.appendChild(linkEl);
+    let styleValue = localStorage.getItem('act_style')
+    if(styleValue){
+      let linkEl = document.createElement('link')
+      linkEl.href = `skin/${styleValue}/main.css`
+      linkEl.id = 'linkStyle'
+      linkEl.rel = 'stylesheet'
+      linkEl.type = 'text/css';
+      document.head.appendChild(linkEl);
+    }
   </script>
 </head>
 <body>
-<div id="main" class="wall mask"></div>
+<div id="main" class="wall cover"></div>
 <div class="title-panel">
   获奖名单
 </div>

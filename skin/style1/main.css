@@ -34,6 +34,8 @@
 .tools .select-btn { box-shadow: 0 .02rem .08rem #66e0e5;background-color: #183e78;}
 .tools .stop-btn { background-color: #32675d;}
 
+.tools .selected { box-shadow: 0 .02rem .08rem #66e0e5;background-color: #183e78;}
+
 
 .result-panel a {
   color: #fae074;
@@ -69,8 +71,16 @@
 }
 
 
-/* 获奖结果页 */
+/* .pond-panel textarea{
+  background-color: rgba(100, 156, 225, .2);
+  box-shadow: 0 0.01rem 0.08rem #78d5fb;
+}
+.input-txt{
+  background-color: rgba(100, 156, 225, .2);
+  box-shadow: 0 0.01rem 0.08rem #78d5fb;
+}
 
-/* .result-title {
-  color: #fae074;
+.sel-style{
+  background-color: rgba(100, 156, 225, .2);
+  box-shadow: 0 0.01rem 0.08rem #78d5fb;
 } */
