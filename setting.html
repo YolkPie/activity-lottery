@@ -95,7 +95,9 @@
       return
     }
     let listStr = textArea.value.split('\n')
-    let pondList = listStr.map(item => {
+    let pondList = listStr.filter(item => {
+      return item && item.length
+    }).map(item => {
       let itemArr = item.split(/,|，/)
       return {
         erp: itemArr[0].trim(),
